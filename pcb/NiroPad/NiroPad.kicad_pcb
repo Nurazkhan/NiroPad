@@ -17209,7 +17209,7 @@
 			(justify left bottom)
 		)
 	)
-	(gr_text "Made in Kazakhstan"
+	(gr_text "Designed in Kazakhstan"
 		(at 54.76 119.03 0)
 		(layer "F.SilkS")
 		(uuid "238187a1-2af5-4e50-b9a3-5140f703dfdc")
