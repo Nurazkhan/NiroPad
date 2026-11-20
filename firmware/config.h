@@ -1,33 +1,38 @@
 #pragma once
+
 #define I2C_DRIVER I2CD1
 #define I2C1_SDA_PIN GP6
- #define I2C1_SCL_PIN GP7
-#define RGBLED_NUM 20
-// Ensure RGBLIGHT_LED_COUNT is available for drivers that expect it
-#ifndef RGBLIGHT_LED_COUNT
-#define RGBLIGHT_LED_COUNT RGBLED_NUM
-#endif
+#define I2C1_SCL_PIN GP7
 
-// USB identity (required by the USB descriptor)
-// You can change these to your actual VID/PID if you have them.
-#ifndef VENDOR_ID
-#define VENDOR_ID 0xFEED
-#endif
-#ifndef PRODUCT_ID
-#define PRODUCT_ID 0x6060
-#endif
-#ifndef DEVICE_VER
-#define DEVICE_VER 0x0001
-#endif
-#ifndef MANUFACTURER
-#define MANUFACTURER "Nuraz"
-#endif
-#ifndef PRODUCT
-#define PRODUCT "NiroPad"
-#endif
+// 128x32 OLED Configuration
+#define OLED_DISPLAY_HEIGHT 32
+#define OLED_DISPLAY_WIDTH 128
+
+// The PCB has 18 SK6812MINI-E LEDs (D10–D23 and D28–D31) on GP0
+#define RGBLIGHT_LED_COUNT 18
+#define WS2812_DI_PIN GP0
+
+// Enable all QMK RGBLight animations so they are selectable in VIA
+#define RGBLIGHT_EFFECT_BREATHING
+#define RGBLIGHT_EFFECT_RAINBOW_MOOD
+#define RGBLIGHT_EFFECT_RAINBOW_SWIRL
+#define RGBLIGHT_EFFECT_SNAKE
+#define RGBLIGHT_EFFECT_KNIGHT
+#define RGBLIGHT_EFFECT_CHRISTMAS
+#define RGBLIGHT_EFFECT_STATIC_GRADIENT
+#define RGBLIGHT_EFFECT_RGB_TEST
+#define RGBLIGHT_EFFECT_ALTERNATING
+#define RGBLIGHT_EFFECT_TWINKLE
+
+#define RGBLIGHT_DEFAULT_MODE RGBLIGHT_MODE_RAINBOW_SWIRL
+#define RGBLIGHT_DEFAULT_VAL 120
+#define RGBLIGHT_DEFAULT_SPD 2
 
 #define ENCODER_A_PINS { GP29 }
 #define ENCODER_B_PINS { GP3 }
 
-#define WS2812_DI_PIN GP0
+// Dynamic keymaps / VIA settings
+#define DYNAMIC_KEYMAP_LAYER_COUNT 4
+#define DYNAMIC_KEYMAP_EEPROM_MAX_ADDR 4095
 
+#define OLED_TIMEOUT 60000

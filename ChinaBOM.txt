@@ -1,0 +1,11 @@
+xiao rp2040 - 21.2cny - 1500kzt - (possible 13cny for 2 in Alibaba)
+1n4148 diode - 1.48cny for 5pc - needed 2.96cny -210kzt - 
+mx style switches - 4.5cny - 340 kzt -10pc
+ec11e encoder - 2cny - 200kzt 
+0.91 oled -5.5cny - 400kzt
+DSA keycaps 4cny - 300kzt
+SK6812 mini 20pc - 3.2cny - 200kzt
+m3 16mm - 2cny - 150kzt
+m3 5 4mm heatset inserts - 6cny - 450kzt
+
+total 3800kzt ~ 7-8$
