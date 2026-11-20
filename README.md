@@ -1,7 +1,7 @@
 # NiroPad
 Simlple macropad to make your computer usage even faster.
 [![View PCB on KiCanvas](https://hack.club/pcb-badge)](https://kicanvas.org/?repo=https://github.com/Nurazkhan/NiroPad/tree/main/pcb/NiroPad)
-![NiroPad](<assets/3D enclosure.png>)
+![Niropad](assets/niropadBuild.jpg)
 
 I made this macropad with the help of hackClub. You can find useful references/examples in [Hackpad]([url](https://stardance.hackclub.com/missions/hackpad)) section.
 ## Features
@@ -18,7 +18,8 @@ The case and the cover for it fit together with 4*M3 screws and heatset inserts.
 The knob is attached to the encoder by friction.
 The case has space for keys and displays, so it fits perfectly.
 ![NiroPad](<assets/3DenclosurewithoutCase.png>)
-Made in OnShape. by Nurazkhan (me).
+![NiroPad](<assets/3D enclosure.png>)
+Made in [OnShape](https://cad.onshape.com/documents/9ad33e523a61abf728e11fc4/w/caed608860a9a012e0575982/e/d846cc92af79f1dbf0053e6e). by Nurazkhan (me).
 
 ## PCB
 ![NiroPad](<assets/SchemePCB.png>)
