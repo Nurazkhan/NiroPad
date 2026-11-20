@@ -82,18 +82,20 @@ def clean_ascii(text, max_len=18):
     return cleaned[:max_len]
 
 def get_master_volume():
-    """Retrieve current Windows Master Volume (0-100%)."""
+    """Retrieve current Windows Master Volume (0-100%) and Mute state."""
     if not PYCAW_AVAILABLE:
-        return 50
+        return 50, 0
     try:
         sp = AudioUtilities.GetSpeakers()
         if sp and sp.EndpointVolume:
             # GetMasterVolumeLevelScalar returns float 0.0 to 1.0
             scalar = sp.EndpointVolume.GetMasterVolumeLevelScalar()
-            return max(0, min(100, int(round(scalar * 100))))
+            vol = max(0, min(100, int(round(scalar * 100))))
+            is_muted = int(sp.EndpointVolume.GetMute())
+            return vol, is_muted
     except Exception:
         pass
-    return 50
+    return 50, 0
 
 def get_wifi_info():
     """Retrieve current Wi-Fi SSID and Signal strength % via netsh."""
@@ -166,7 +168,7 @@ def main():
             # 1. Gather System Stats
             cpu = max(0, min(100, int(psutil.cpu_percent(interval=None))))
             ram = max(0, min(100, int(psutil.virtual_memory().percent)))
-            vol = get_master_volume()
+            vol, is_muted = get_master_volume()
             gpu_temp = 45
 
             # 2. Update Wi-Fi stats periodically (every 5 seconds)
@@ -184,8 +186,8 @@ def main():
                 last_media_check = now
 
             # 4. Transmit Telemetry (with tiny delays to prevent USB buffer collisions)
-            # Packet 0x51: System Stats [0x51, cpu, ram, gpu, wifi, vol]
-            stats_payload = bytes([cpu, ram, gpu_temp, cached_sig, vol])
+            # Packet 0x51: System Stats [0x51, cpu, ram, gpu, wifi, vol, is_muted]
+            stats_payload = bytes([cpu, ram, gpu_temp, cached_sig, vol, is_muted])
             if not send_packet(dev, 0x51, stats_payload):
                 raise IOError("Device disconnected")
 
@@ -208,7 +210,8 @@ def main():
             send_packet(dev, 0x54, net_payload)
 
             # Console status
-            print(f"\r[Telemetry] CPU:{cpu:2d}% | RAM:{ram:2d}% | VOL:{vol:2d}% | WiFi:{cached_sig:2d}% | {cached_title}", end="", flush=True)
+            mute_str = "[MUTED]" if is_muted else "       "
+            print(f"\r[Telemetry] CPU:{cpu:2d}% | RAM:{ram:2d}% | VOL:{vol:2d}% {mute_str} | WiFi:{cached_sig:2d}% | {cached_title}", end="", flush=True)
 
             time.sleep(1.0)
 
